@@ -1,4 +1,6 @@
-// Create animated background shapes
+// ============================================
+// BACKGROUND SHAPES
+// ============================================
 function createBackgroundShapes() {
     const bgShapes = document.createElement('div');
     bgShapes.className = 'bg-shapes';
@@ -14,7 +16,9 @@ function createBackgroundShapes() {
 
 createBackgroundShapes();
 
-// Mobile Navigation Toggle
+// ============================================
+// MOBILE NAVIGATION
+// ============================================
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -24,7 +28,6 @@ hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
 
-// Close mobile menu when clicking on a link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         hamburger.classList.remove('active');
@@ -32,7 +35,6 @@ navLinks.forEach(link => {
     });
 });
 
-// Close mobile menu when clicking outside
 document.addEventListener('click', (e) => {
     if (!e.target.closest('.navbar')) {
         hamburger.classList.remove('active');
@@ -40,7 +42,9 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Navbar scroll effect
+// ============================================
+// NAVBAR SCROLL EFFECT
+// ============================================
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
@@ -51,7 +55,9 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Active navigation link based on scroll position
+// ============================================
+// ACTIVE NAVIGATION LINK
+// ============================================
 const sections = document.querySelectorAll('section');
 
 function updateActiveNav() {
@@ -76,14 +82,33 @@ function updateActiveNav() {
 window.addEventListener('scroll', updateActiveNav);
 updateActiveNav();
 
-// Smooth scroll for anchor links
+// ============================================
+// SMOOTH SCROLL WITH CUSTOM OFFSETS
+// ============================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         
         if (target) {
-            const offsetTop = target.offsetTop - 100;
+            const targetId = target.getAttribute('id');
+            let offsetTop;
+            
+            // Different offsets for different sections
+            if (targetId === 'about') {
+                offsetTop = target.offsetTop - 100;
+            } else if (targetId === 'experience') {
+                offsetTop = target.offsetTop - 0;
+            } else if (targetId === 'skills') {
+                offsetTop = target.offsetTop - 0;
+            } else if (targetId === 'projects') {
+                offsetTop = target.offsetTop - 0;
+            } else if (targetId === 'contact') {
+                offsetTop = target.offsetTop - 0;
+            } else {
+                offsetTop = target.offsetTop - 0;
+            }
+            
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
@@ -92,7 +117,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for fade-in animations
+// ============================================
+// INTERSECTION OBSERVER FOR ANIMATIONS
+// ============================================
 const observerOptions = {
     threshold: 0.15,
     rootMargin: '0px 0px -80px 0px'
@@ -106,51 +133,15 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Add fade-in to elements
-const fadeElements = document.querySelectorAll('.skill-card, .project-card, .stat-item, .about-text, .contact-card');
+const fadeElements = document.querySelectorAll('.skill-card, .project-card, .about-text, .contact-card, .experience-card');
 fadeElements.forEach(el => {
     el.classList.add('fade-in');
     observer.observe(el);
 });
 
-// Counter animation for stats
-function animateCounter(element) {
-    const target = parseInt(element.textContent);
-    const duration = 1500;
-    const increment = target / (duration / 16);
-    let current = 0;
-    
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = target + (target === 100 ? '%' : '+');
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(current) + (target === 100 ? '%' : '+');
-        }
-    }, 16);
-}
-
-// Trigger counter animation when stats are visible
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const h3 = entry.target.querySelector('h3');
-            if (!h3.classList.contains('counted')) {
-                h3.classList.add('counted');
-                animateCounter(h3);
-                statsObserver.unobserve(entry.target);
-            }
-        }
-    });
-}, { threshold: 0.5 });
-
-const statItems = document.querySelectorAll('.stat-item');
-statItems.forEach(item => {
-    statsObserver.observe(item);
-});
-
-// Typing effect for hero subtitle
+// ============================================
+// TYPING EFFECT FOR HERO
+// ============================================
 const heroSubtitle = document.querySelector('.hero-subtitle');
 const subtitleText = heroSubtitle.textContent;
 let charIndex = 0;
@@ -167,23 +158,13 @@ function typeWriter() {
     }
 }
 
-// Start typing effect after page loads
 window.addEventListener('load', () => {
     setTimeout(typeWriter, 600);
 });
 
-// Scroll progress bar
-const progressBar = document.createElement('div');
-progressBar.className = 'progress-bar';
-document.body.appendChild(progressBar);
-
-window.addEventListener('scroll', () => {
-    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (window.pageYOffset / windowHeight) * 100;
-    progressBar.style.width = scrolled + '%';
-});
-
-// Parallax effect for background shapes
+// ============================================
+// PARALLAX EFFECT FOR SHAPES
+// ============================================
 window.addEventListener('scroll', () => {
     if (window.innerWidth > 768) {
         const scrolled = window.pageYOffset;
@@ -196,68 +177,17 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Custom cursor (only on desktop)
-if (window.innerWidth > 768) {
-    const cursor = document.createElement('div');
-    cursor.style.cssText = `
-        width: 20px;
-        height: 20px;
-        border: 2px solid #0066ff;
-        border-radius: 50%;
-        position: fixed;
-        pointer-events: none;
-        z-index: 9999;
-        transition: all 0.15s ease;
-        mix-blend-mode: difference;
-    `;
-    document.body.appendChild(cursor);
-
-    const cursorDot = document.createElement('div');
-    cursorDot.style.cssText = `
-        width: 6px;
-        height: 6px;
-        background: #0066ff;
-        border-radius: 50%;
-        position: fixed;
-        pointer-events: none;
-        z-index: 9999;
-        mix-blend-mode: difference;
-    `;
-    document.body.appendChild(cursorDot);
-
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-    let dotX = 0, dotY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    function animateCursor() {
-        cursorX += (mouseX - cursorX) * 0.15;
-        cursorY += (mouseY - cursorY) * 0.15;
-        
-        dotX += (mouseX - dotX) * 0.3;
-        dotY += (mouseY - dotY) * 0.3;
-        
-        cursor.style.left = cursorX - 10 + 'px';
-        cursor.style.top = cursorY - 10 + 'px';
-        
-        cursorDot.style.left = dotX - 3 + 'px';
-        cursorDot.style.top = dotY - 3 + 'px';
-        
-        requestAnimationFrame(animateCursor);
-    }
-
-
-// Smooth page load
+// ============================================
+// SMOOTH PAGE LOAD
+// ============================================
 window.addEventListener('load', () => {
     document.body.style.opacity = '1';
     document.body.style.transition = 'opacity 0.5s ease';
 });
 
-// Performance: Reduce motion for mobile
+// ============================================
+// MOBILE PERFORMANCE OPTIMIZATION
+// ============================================
 if (window.innerWidth <= 768) {
     const style = document.createElement('style');
     style.textContent = `
@@ -267,4 +197,128 @@ if (window.innerWidth <= 768) {
         }
     `;
     document.head.appendChild(style);
-}}
+}
+
+// ============================================
+// FALLING LIGHT BEAMS BACKGROUND
+// ============================================
+const beamsCanvas = document.getElementById('fallingBeams');
+const ctx = beamsCanvas.getContext('2d');
+
+let width, height;
+
+function resize() {
+    width = beamsCanvas.width = window.innerWidth;
+    height = beamsCanvas.height = window.innerHeight;
+}
+
+resize();
+window.addEventListener('resize', resize);
+
+const beams = [];
+const beamCount = window.innerWidth < 768 ? 25 : 50;
+
+class Beam {
+    constructor() {
+        this.reset();
+    }
+    
+    reset() {
+        this.x = Math.random() * width;
+        this.y = -200 - Math.random() * 500;
+        this.length = 100 + Math.random() * 200;
+        this.speed = 2 + Math.random() * 4;
+        this.thickness = 1 + Math.random() * 2;
+        this.opacity = 0.3 + Math.random() * 0.4;
+        this.angle = Math.PI / 2;
+    }
+    
+    update() {
+        this.y += this.speed;
+        if (this.y > height + 200) this.reset();
+    }
+    
+    draw() {
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(
+            this.x + Math.cos(this.angle) * this.length,
+            this.y + Math.sin(this.angle) * this.length
+        );
+        
+        const gradient = ctx.createLinearGradient(
+            this.x, 
+            this.y, 
+            this.x + Math.cos(this.angle) * this.length,
+            this.y + Math.sin(this.angle) * this.length
+        );
+        
+        gradient.addColorStop(0, `rgba(0, 102, 255, ${this.opacity})`);
+        gradient.addColorStop(1, `rgba(0, 204, 255, 0)`);
+        
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = this.thickness;
+        ctx.stroke();
+    }
+}
+
+for (let i = 0; i < beamCount; i++) {
+    beams.push(new Beam());
+}
+
+function animateBeams() {
+    ctx.clearRect(0, 0, width, height);
+    beams.forEach(beam => {
+        beam.update();
+        beam.draw();
+    });
+    requestAnimationFrame(animateBeams);
+}
+
+animateBeams();
+
+// ============================================
+// PROJECT IMAGE SLIDESHOW
+// ============================================
+function initProjectSlideshows() {
+    const slideshows = document.querySelectorAll('.project-slideshow');
+    
+    slideshows.forEach((slideshow, index) => {
+        const slides = slideshow.querySelectorAll('.slide');
+        const dotsContainer = slideshow.parentElement.querySelector('.slideshow-dots');
+        const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
+        let currentSlide = 0;
+        
+        if (slides.length <= 1) return;
+        
+        // Auto-advance slides every 3 seconds
+        setInterval(() => {
+            // Remove active from current
+            slides[currentSlide].classList.remove('active');
+            if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+            
+            // Move to next slide
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Add active to new current
+            slides[currentSlide].classList.add('active');
+            if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+        }, 3000);
+        
+        // Click on dots to navigate
+        dots.forEach((dot, dotIndex) => {
+            dot.addEventListener('click', () => {
+                slides[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                
+                currentSlide = dotIndex;
+                
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            });
+        });
+    });
+}
+
+// Initialize slideshows after DOM loads
+document.addEventListener('DOMContentLoaded', initProjectSlideshows);
