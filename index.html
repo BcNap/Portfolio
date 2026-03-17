@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,17 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <canvas id="fallingBeams"></canvas>
+
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
 
     <!-- NAVBAR -->
     <nav class="navbar">
@@ -25,21 +35,23 @@
             <div class="nav-actions">
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                     <span class="theme-icon-sun">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="5"/>
-                            <line x1="12" y1="1" x2="12" y2="3"/>
-                            <line x1="12" y1="21" x2="12" y2="23"/>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                            <line x1="1" y1="12" x2="3" y2="12"/>
-                            <line x1="21" y1="12" x2="23" y2="12"/>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="23" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                            <line x1="1" y1="12" x2="3" y2="12" />
+                            <line x1="21" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                         </svg>
                     </span>
                     <span class="theme-icon-moon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                         </svg>
                     </span>
                 </button>
@@ -52,19 +64,13 @@
         </div>
     </nav>
 
-    <!-- FLOATING BACK TO TOP -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
-
     <!-- HERO -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="hero-title">Hi, I'm <span class="highlight">Nap Carlo</span></h1>
             <p class="hero-subtitle">Mobile &amp; Web Developer | IoT Specialist</p>
-            <p class="hero-description">I build innovative mobile applications, web solutions, and IoT systems that solve real-world problems</p>
+            <p class="hero-description">I build innovative mobile applications, web solutions, and IoT systems that
+                solve real-world problems</p>
             <div class="hero-buttons">
                 <a href="#projects" class="btn btn-primary">View My Work</a>
                 <a href="#contact" class="btn btn-secondary">Get In Touch</a>
@@ -78,8 +84,14 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>I'm an IT enthusiast and startup co-founder specializing in front-end development for web and mobile applications, IoT development, and hardware maintenance. I blend creativity with technical precision to build websites, apps, and connected systems that not only look stunning but perform flawlessly across devices and environments.</p>
-                    <p>Passionate about leveraging my skills to provide real-world solutions, I'm committed to fostering innovation and adaptability. When I'm not coding, I'm exploring emerging technologies, connecting with the global developer community, and leading IoT-powered projects to turn bold ideas into reality.</p>
+                    <p>I'm an IT enthusiast and startup co-founder specializing in front-end development for web and
+                        mobile applications, IoT development, and hardware maintenance. I blend creativity with
+                        technical precision to build websites, apps, and connected systems that not only look stunning
+                        but perform flawlessly across devices and environments.</p>
+                    <p>Passionate about leveraging my skills to provide real-world solutions, I'm committed to fostering
+                        innovation and adaptability. When I'm not coding, I'm exploring emerging technologies,
+                        connecting with the global developer community, and leading IoT-powered projects to turn bold
+                        ideas into reality.</p>
                 </div>
                 <div class="avatar-container">
                     <img src="assets/Profile/Profile_Picture.jpeg" alt="Nap Carlo" class="avatar-img">
@@ -100,11 +112,13 @@
                         <div class="education-date">2021 - 2025</div>
                         <h3>Bachelor of Science in Information Technology</h3>
                         <h4>University of Science and Technology of Southern Philippines</h4>
-                        <p>Database and Information System Track. Graduated <strong>Cum Laude</strong> and awarded <strong>Best Capstone Project and Research</strong> (2025). Active in startup incubation programs, hackathons, and IoT systems development.</p>
+                        <p>Database and Information System Track. Graduated <strong>Cum Laude</strong> and awarded
+                            <strong>Best Capstone Project and Research</strong> (2025). Active in startup incubation
+                            programs, hackathons, and IoT systems development.</p>
                         <div class="education-tags">
                             <span class="tag">Cum Laude</span>
                             <span class="tag">Best Capstone</span>
-                            <span class="tag">Database</span>
+                            <span class="tag">Database &amp; IS</span>
                             <span class="tag">IoT Systems</span>
                         </div>
                     </div>
@@ -116,7 +130,9 @@
                         <div class="education-date">2019 - 2021</div>
                         <h3>Senior High School — STEM Strand</h3>
                         <h4>Merry Child School</h4>
-                        <p>Specialized in Science, Technology, Engineering, and Mathematics. Graduated <strong>With Honors</strong>, building a strong foundation in programming, mathematics, and analytical problem-solving.</p>
+                        <p>Specialized in Science, Technology, Engineering, and Mathematics. Graduated <strong>With
+                                Honors</strong>, building a strong foundation in programming, mathematics, and
+                            analytical problem-solving.</p>
                         <div class="education-tags">
                             <span class="tag">STEM</span>
                             <span class="tag">With Honors</span>
@@ -142,7 +158,12 @@
                         <div class="experience-date">Feb 2025 - May 2025</div>
                         <h3>Mobile Developer &amp; IoT Engineer</h3>
                         <h4>Center of Entrepreneurship — Startup Incubation Program</h4>
-                        <p>Developed a mobile application as part of a team that secured funding and won awards at national and international hackathons, contributing to successful pitches and showcasing the project at high-profile forums. Deployed beta version with El Salvador City DRRMO and conducted beta testing with 150 target users, enhancing mobile UI/UX for improved user adoption. Built an IoT alarm system using ESP32 integrated with a web panel for real-time notification triggers.</p>
+                        <p>Developed a mobile application as part of a team that secured funding and won awards at
+                            national and international hackathons, contributing to successful pitches and showcasing the
+                            project at high-profile forums. Deployed beta version with El Salvador City DRRMO and
+                            conducted beta testing with 150 target users, enhancing mobile UI/UX for improved user
+                            adoption. Built an IoT alarm system using ESP32 integrated with a web panel for real-time
+                            notification triggers.</p>
                         <div class="experience-tags">
                             <span class="tag">React Native</span>
                             <span class="tag">IoT / ESP32</span>
@@ -158,7 +179,10 @@
                         <div class="experience-date">Jun 2024 - Aug 2024</div>
                         <h3>Product Developer &amp; Market Researcher</h3>
                         <h4>Startup Incubation Program — Cagayan de Oro City</h4>
-                        <p>Conducted customer and market validation across all 15 barangays in the city, gathering data to refine product strategy. Designed and developed an MVP with mobile and web UI/UX screens optimized for accessibility. Built industry connections through mentorship with startup leaders and training in IP rights and commercialization.</p>
+                        <p>Conducted customer and market validation across all 15 barangays in the city, gathering data
+                            to refine product strategy. Designed and developed an MVP with mobile and web UI/UX screens
+                            optimized for accessibility. Built industry connections through mentorship with startup
+                            leaders and training in IP rights and commercialization.</p>
                         <div class="experience-tags">
                             <span class="tag">Market Research</span>
                             <span class="tag">MVP Development</span>
@@ -174,7 +198,10 @@
                         <div class="experience-date">Jun 2024 - Present</div>
                         <h3>Lead Developer — AIDA Project</h3>
                         <h4>Mobile Developer | IoT Lead | Data &amp; Systems Developer</h4>
-                        <p>Spearheaded development of the Automated Incident Detection and Assistance system, securing a partnership with El Salvador City CDRRMO. Built a cross-platform mobile app in React Native for real-time emergency alerts and incident reporting. Automated collection of 3,000+ images using Selenium and performed data cleaning with Roboflow.</p>
+                        <p>Spearheaded development of the Automated Incident Detection and Assistance system, securing a
+                            partnership with El Salvador City CDRRMO. Built a cross-platform mobile app in React Native
+                            for real-time emergency alerts and incident reporting. Automated collection of 3,000+ images
+                            using Selenium and performed data cleaning with Roboflow.</p>
                         <div class="experience-tags">
                             <span class="tag">React Native</span>
                             <span class="tag">Python / Django</span>
@@ -203,7 +230,9 @@
                         </div>
                         <h3>PacketHacks x HacktheClimate</h3>
                         <h4>SMX Convention Center Pasay</h4>
-                        <p>Finalist at the nationally held PacketHacks x HacktheClimate hackathon — a premier climate-tech innovation challenge bringing together top student developers and entrepreneurs across the Philippines.</p>
+                        <p>Finalist at the nationally held PacketHacks x HacktheClimate hackathon — a premier
+                            climate-tech innovation challenge bringing together top student developers and entrepreneurs
+                            across the Philippines.</p>
                     </div>
                 </div>
 
@@ -214,9 +243,12 @@
                             <span class="competition-date">July 2025</span>
                             <span class="competition-level competition-level--gold">International</span>
                         </div>
-                        <h3>Southeast Asia Division — China International College Students' Innovation Competition (SEA-CICSIC)</h3>
+                        <h3>Southeast Asia Division — China International College Students' Innovation Competition
+                            (SEA-CICSIC)</h3>
                         <h4>Xiamen University Malaysia</h4>
-                        <p>1st Place at the inaugural SEA Division of CICSIC — one of the world's largest innovation competitions with 20.8 million participants from 153 countries. Winners are recommended to the main CICSIC global finals.</p>
+                        <p>1st Place at the inaugural SEA Division of CICSIC — one of the world's largest innovation
+                            competitions with 20.8 million participants from 153 countries. Winners are recommended to
+                            the main CICSIC global finals.</p>
                     </div>
                 </div>
 
@@ -229,7 +261,9 @@
                         </div>
                         <h3>Disruptor X: A Yearly Pitch Competition by Serial Disruptors</h3>
                         <h4>Chali Beach Resort, Cagayan de Oro City</h4>
-                        <p>2nd Runner-Up at Disruptor X, a competitive annual pitch competition by Serial Disruptors evaluating startup ideas on disruption potential, business viability, and founder execution capability.</p>
+                        <p>2nd Runner-Up at Disruptor X, a competitive annual pitch competition by Serial Disruptors
+                            evaluating startup ideas on disruption potential, business viability, and founder execution
+                            capability.</p>
                     </div>
                 </div>
 
@@ -242,7 +276,9 @@
                         </div>
                         <h3>Lambigit 2025: Northern Mindanao Research Innovation Summit</h3>
                         <h4>University of Science and Technology of Southern Philippines — CDO</h4>
-                        <p>Overall Best Poster at the Lambigit 2025 Research Innovation Summit hosted by USTP CDO — recognizing the most outstanding research poster presentation among all competing teams in Northern Mindanao.</p>
+                        <p>Overall Best Poster at the Lambigit 2025 Research Innovation Summit hosted by USTP CDO —
+                            recognizing the most outstanding research poster among all competing teams in Northern
+                            Mindanao.</p>
                     </div>
                 </div>
 
@@ -255,7 +291,9 @@
                         </div>
                         <h3>Philippine Startup Challenge 9 — Region X</h3>
                         <h4>DICT — Mindanao State University, Iligan Institute of Technology</h4>
-                        <p>1st Runner-Up at the DICT-organized Regional Philippine Startup Challenge 9 for Region X — a prestigious annual government competition promoting ICT-driven startup innovation across Northern Mindanao.</p>
+                        <p>1st Runner-Up at the DICT-organized Regional Philippine Startup Challenge 9 for Region X — a
+                            prestigious annual government competition promoting ICT-driven startup innovation across
+                            Northern Mindanao.</p>
                     </div>
                 </div>
 
@@ -267,8 +305,11 @@
                             <span class="competition-level competition-level--gold">National</span>
                         </div>
                         <h3>Business Idea Development Award 2024</h3>
-                        <h4>Philippine Chamber of Commerce and Industry — Our Lady of Perpetual Succor College, Marikina City</h4>
-                        <p>Champion at the national-level business idea pitching competition organized by the PCCI, evaluating startup viability, market potential, and social impact before an industry panel of judges.</p>
+                        <h4>Philippine Chamber of Commerce and Industry — Our Lady of Perpetual Succor College, Marikina
+                            City</h4>
+                        <p>Champion at the national-level business idea pitching competition organized by the PCCI,
+                            evaluating startup viability, market potential, and social impact before an industry panel
+                            of judges.</p>
                     </div>
                 </div>
 
@@ -281,7 +322,8 @@
                         </div>
                         <h3>Sparks' Up Student Incubation Program</h3>
                         <h4>Center for Entrepreneurship and Technology — USTP</h4>
-                        <p>Received a ₱100,000 Grant Fund through the Sparks' Up Student Incubation Program at USTP — providing seed funding to accelerate product development and market entry.</p>
+                        <p>Received a ₱100,000 Grant Fund through the Sparks' Up Student Incubation Program at USTP —
+                            providing seed funding to accelerate product development and market entry.</p>
                     </div>
                 </div>
 
@@ -294,7 +336,9 @@
                         </div>
                         <h3>Tech101 — Demo Day Pitching Competition</h3>
                         <h4>Center for Entrepreneurship and Technology — USTP</h4>
-                        <p>Champion at the Tech101 Demo Day Pitching Competition hosted by the Center for Entrepreneurship and Technology, USTP — demonstrating strong technical product storytelling and startup readiness to an industry panel.</p>
+                        <p>Champion at the Tech101 Demo Day Pitching Competition hosted by the Center for
+                            Entrepreneurship and Technology, USTP — demonstrating strong technical product storytelling
+                            and startup readiness.</p>
                     </div>
                 </div>
 
@@ -341,7 +385,8 @@
                 <div class="skill-card">
                     <div class="skill-icon">🚀</div>
                     <h3>Startup &amp; Business</h3>
-                    <p>Market Validation, MVP Development, IP Rights, Commercialization Strategy, Stakeholder Management</p>
+                    <p>Market Validation, MVP Development, IP Rights, Commercialization Strategy, Stakeholder
+                        Management, Pitching</p>
                 </div>
 
             </div>
@@ -357,27 +402,29 @@
                 <div class="project-card project-card--portrait">
                     <div class="project-image">
                         <div class="project-slideshow">
-                            <img src="assets/Aida/Aida_1.jpg"  alt="AIDA 1"  class="slide active">
-                            <img src="assets/Aida/Aida_2.jpg"  alt="AIDA 2"  class="slide">
-                            <img src="assets/Aida/Aida_3.jpg"  alt="AIDA 3"  class="slide">
-                            <img src="assets/Aida/Aida_4.jpg"  alt="AIDA 4"  class="slide">
-                            <img src="assets/Aida/Aida_5.jpg"  alt="AIDA 5"  class="slide">
-                            <img src="assets/Aida/Aida_6.jpg"  alt="AIDA 6"  class="slide">
-                            <img src="assets/Aida/Aida_7.jpg"  alt="AIDA 7"  class="slide">
-                            <img src="assets/Aida/Aida_8.jpg"  alt="AIDA 8"  class="slide">
-                            <img src="assets/Aida/Aida_9.jpg"  alt="AIDA 9"  class="slide">
+                            <img src="assets/Aida/Aida_1.jpg" alt="AIDA 1" class="slide active">
+                            <img src="assets/Aida/Aida_2.jpg" alt="AIDA 2" class="slide">
+                            <img src="assets/Aida/Aida_3.jpg" alt="AIDA 3" class="slide">
+                            <img src="assets/Aida/Aida_4.jpg" alt="AIDA 4" class="slide">
+                            <img src="assets/Aida/Aida_5.jpg" alt="AIDA 5" class="slide">
+                            <img src="assets/Aida/Aida_6.jpg" alt="AIDA 6" class="slide">
+                            <img src="assets/Aida/Aida_7.jpg" alt="AIDA 7" class="slide">
+                            <img src="assets/Aida/Aida_8.jpg" alt="AIDA 8" class="slide">
+                            <img src="assets/Aida/Aida_9.jpg" alt="AIDA 9" class="slide">
                             <img src="assets/Aida/Aida_10.jpg" alt="AIDA 10" class="slide">
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>Automated Incident Detection and Assistance (AIDA)</h3>
-                        <p>Award-winning web and mobile system with real-time location detection, AI-powered incident recognition, automated reporting, and IoT integration. Deployed with El Salvador City CDRRMO.</p>
+                        <p>Award-winning web and mobile system with real-time location detection, AI-powered incident
+                            recognition, automated reporting, and IoT integration. Deployed with El Salvador City
+                            CDRRMO.</p>
                         <div class="project-tags">
                             <span class="tag">React Native</span>
                             <span class="tag">Python</span>
                             <span class="tag">React.js</span>
                             <span class="tag">Django</span>
-                            <span class="tag">IoT</span>
+                            <span class="tag">PostgreSQL</span>
                         </div>
                     </div>
                 </div>
@@ -394,7 +441,9 @@
                     </div>
                     <div class="project-info">
                         <h3>Lawod: A Digital Fishing Companion</h3>
-                        <p>A mobile marketplace app enabling fishermen to list and sell products. Developed in collaboration with BFAR Region X, with problem validation across 3 towns in Misamis Oriental. Includes IoT Fish Finder device diagrams and an ocean-themed UI.</p>
+                        <p>A mobile marketplace app enabling fishermen to list and sell products. Developed in
+                            collaboration with BFAR Region X, with problem validation across 3 towns in Misamis
+                            Oriental. Includes IoT Fish Finder device diagrams and an ocean-themed UI.</p>
                         <div class="project-tags">
                             <span class="tag">Flutter</span>
                             <span class="tag">Firebase</span>
@@ -415,7 +464,8 @@
                     </div>
                     <div class="project-info">
                         <h3>Kofeenoy</h3>
-                        <p>A responsive web-based Coffee Recipe book with a clean UI and dynamic recipe browsing experience.</p>
+                        <p>A responsive web-based Coffee Recipe book with a clean UI and dynamic recipe browsing
+                            experience.</p>
                         <div class="project-tags">
                             <span class="tag">HTML</span>
                             <span class="tag">JavaScript</span>
@@ -438,10 +488,10 @@
                 Feel free to reach out through any of these channels!
             </p>
             <div class="contact-cards">
-                <a href="mailto:baclayon.nap@gmail.com" class="contact-card">
+                <a href="mailto:Baclayon.nap@gmail.com" class="contact-card">
                     <span class="icon">📧</span>
                     <h3>Email</h3>
-                    <p>baclayon.nap@gmail.com</p>
+                    <p>Baclayon.nap@gmail.com</p>
                 </a>
                 <a href="tel:+639673829986" class="contact-card">
                     <span class="icon">📱</span>
@@ -456,18 +506,30 @@
             </div>
             <div class="social-links">
                 <a href="https://github.com/bcnap" target="_blank" class="social-link">GitHub</a>
-                <a href="https://www.linkedin.com/in/nap-carlo-baclayon-92510b354/" target="_blank" class="social-link">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/nap-carlo-baclayon-92510b354/" target="_blank"
+                    class="social-link">LinkedIn</a>
+                <a href="assets/resume/Resume Nap.pdf" target="_blank" class="social-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                    Resume
+                </a>
             </div>
-        </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; NCBaclayon 2026</p>
+            <p>&copy; NCBaclayon. Built with passion</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -237,6 +237,7 @@ function animateBeams() {
     beams.forEach(function (beam) { beam.update(); beam.draw(); });
     requestAnimationFrame(animateBeams);
 }
+
 animateBeams();
 
 // ============================================
