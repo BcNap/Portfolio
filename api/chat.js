@@ -80,7 +80,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         // Fast, free, and good enough for a bio-grounded Q&A bot.
         // See https://console.groq.com/docs/models for current options.
-        model: 'llama-3.1-8b-instant',
+        model: 'openai/gpt-oss-20b',
         temperature: 0.4,
         max_tokens: 300,
         messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...trimmed],
@@ -89,8 +89,10 @@ export default async function handler(req, res) {
 
     if (!groqRes.ok) {
       const errText = await groqRes.text();
+      // This full detail lands in Vercel's Runtime Logs (Project → Logs),
+      // even though the browser only ever sees the generic message below.
       console.error('Groq API error:', groqRes.status, errText);
-      return res.status(502).json({ error: 'Upstream AI request failed' });
+      return res.status(502).json({ error: 'Upstream AI request failed', detail: errText });
     }
 
     const data = await groqRes.json();
