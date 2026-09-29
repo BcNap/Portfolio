@@ -7,6 +7,7 @@
     <meta name="description" content="NC Portfolio - Web Developer & Designer">
     <title>Nap Carlo - Developer Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://cdn.simpleicons.org">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
 
@@ -20,6 +21,53 @@
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
+
+    <!-- AI CHAT WIDGET -->
+    <button class="chat-fab" id="chatFab" aria-label="Ask about Nap Carlo" aria-expanded="false">
+        <svg class="chat-fab-icon-open" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+        </svg>
+        <svg class="chat-fab-icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </button>
+
+    <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat about Nap Carlo" aria-hidden="true">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <span class="chat-avatar">NC</span>
+                <div>
+                    <div class="chat-title">Ask about Nap Carlo</div>
+                    <div class="chat-subtitle">AI-powered · usually replies instantly</div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-msg chat-msg--bot">
+                Hi! I can answer questions about Nap Carlo's experience, projects, and skills. Try asking something
+                like <em>"What has he built?"</em> or <em>"What's his tech stack?"</em>
+            </div>
+        </div>
+        <div class="chat-suggestions" id="chatSuggestions">
+            <button class="chat-suggestion" type="button">What has he built?</button>
+            <button class="chat-suggestion" type="button">What's his tech stack?</button>
+            <button class="chat-suggestion" type="button">Any awards?</button>
+        </div>
+        <form class="chat-input-row" id="chatForm">
+            <input type="text" id="chatInput" class="chat-input" placeholder="Type a question…" autocomplete="off"
+                maxlength="500">
+            <button type="submit" class="chat-send" aria-label="Send message">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </form>
+    </div>
 
     <!-- NAVBAR -->
     <nav class="navbar">
@@ -350,45 +398,305 @@
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title">Skills &amp; Technologies</h2>
-            <div class="skills-grid">
+            <p class="skills-intro">Languages, frameworks, and tools I use to design, build, and ship products.</p>
 
-                <div class="skill-card">
-                    <div class="skill-icon">💻</div>
-                    <h3>Languages &amp; Frameworks</h3>
-                    <p>HTML, CSS, JavaScript, Python, React, React Native, Flutter, Django</p>
+            <!-- Plain-text list for screen readers; the carousel below is decorative and duplicated -->
+            <span class="sr-only">Skills include: HTML, CSS, JavaScript, Python, React, Flutter, Django, Firebase, MySQL, PostgreSQL, Selenium, Git, Trello, Notion, Asana, Monday.com, Slack, Figma, Canva, ESP32, Roboflow, React Native.</span>
+
+            <!-- ROW 1 — drifts left -->
+            <div class="tech-marquee" aria-hidden="true">
+                <div class="tech-track">
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="H">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/html5" data-slug="html5" alt="">
+                        </span>
+                        <span class="tech-name">HTML</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="C">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/css" data-slug="css" alt="">
+                        </span>
+                        <span class="tech-name">CSS</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="J">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/javascript/C9A700" data-slug="javascript" data-light="C9A700" data-dark="F7DF1E" alt="">
+                        </span>
+                        <span class="tech-name">JavaScript</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="P">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/python" data-slug="python" alt="">
+                        </span>
+                        <span class="tech-name">Python</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="R">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/react/087EA4" data-slug="react" data-light="087EA4" data-dark="61DAFB" alt="">
+                        </span>
+                        <span class="tech-name">React</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="R">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/react/087EA4" data-slug="react" data-light="087EA4" data-dark="61DAFB" alt="">
+                        </span>
+                        <span class="tech-name">React Native</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="F">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/flutter/02569B" data-slug="flutter" data-light="02569B" data-dark="54C5F8" alt="">
+                        </span>
+                        <span class="tech-name">Flutter</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="D">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/django/0C4B33" data-slug="django" data-light="0C4B33" data-dark="44B78B" alt="">
+                        </span>
+                        <span class="tech-name">Django</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="F">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/firebase/F57C00" data-slug="firebase" data-light="F57C00" data-dark="FFCA28" alt="">
+                        </span>
+                        <span class="tech-name">Firebase</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="M">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/mysql" data-slug="mysql" alt="">
+                        </span>
+                        <span class="tech-name">MySQL</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="P">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/postgresql" data-slug="postgresql" alt="">
+                        </span>
+                        <span class="tech-name">PostgreSQL</span>
+                    </span>
+                    <!-- duplicate set below: required for the seamless loop -->
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="H">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/html5" data-slug="html5" alt="">
+                        </span>
+                        <span class="tech-name">HTML</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="C">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/css" data-slug="css" alt="">
+                        </span>
+                        <span class="tech-name">CSS</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="J">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/javascript/C9A700" data-slug="javascript" data-light="C9A700" data-dark="F7DF1E" alt="">
+                        </span>
+                        <span class="tech-name">JavaScript</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="P">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/python" data-slug="python" alt="">
+                        </span>
+                        <span class="tech-name">Python</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="R">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/react/087EA4" data-slug="react" data-light="087EA4" data-dark="61DAFB" alt="">
+                        </span>
+                        <span class="tech-name">React</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="R">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/react/087EA4" data-slug="react" data-light="087EA4" data-dark="61DAFB" alt="">
+                        </span>
+                        <span class="tech-name">React Native</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="F">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/flutter/02569B" data-slug="flutter" data-light="02569B" data-dark="54C5F8" alt="">
+                        </span>
+                        <span class="tech-name">Flutter</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="D">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/django/0C4B33" data-slug="django" data-light="0C4B33" data-dark="44B78B" alt="">
+                        </span>
+                        <span class="tech-name">Django</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="F">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/firebase/F57C00" data-slug="firebase" data-light="F57C00" data-dark="FFCA28" alt="">
+                        </span>
+                        <span class="tech-name">Firebase</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="M">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/mysql" data-slug="mysql" alt="">
+                        </span>
+                        <span class="tech-name">MySQL</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="P">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/postgresql" data-slug="postgresql" alt="">
+                        </span>
+                        <span class="tech-name">PostgreSQL</span>
+                    </span>
                 </div>
+            </div>
 
-                <div class="skill-card">
-                    <div class="skill-icon">🛠️</div>
-                    <h3>Tools &amp; Platforms</h3>
-                    <p>Firebase, MySQL, PostgreSQL, Selenium, Git, Trello, Notion, Asana, Monday.com, Slack</p>
+            <!-- ROW 2 — drifts right -->
+            <div class="tech-marquee" aria-hidden="true">
+                <div class="tech-track tech-track--reverse">
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="S">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/selenium" data-slug="selenium" alt="">
+                        </span>
+                        <span class="tech-name">Selenium</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="G">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/git" data-slug="git" alt="">
+                        </span>
+                        <span class="tech-name">Git</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="T">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/trello" data-slug="trello" alt="">
+                        </span>
+                        <span class="tech-name">Trello</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="N">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/notion/191919" data-slug="notion" data-light="191919" data-dark="FFFFFF" alt="">
+                        </span>
+                        <span class="tech-name">Notion</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="A">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/asana" data-slug="asana" alt="">
+                        </span>
+                        <span class="tech-name">Asana</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="M">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/mondaydotcom" data-slug="mondaydotcom" alt="">
+                        </span>
+                        <span class="tech-name">Monday.com</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="S">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/slack/4A154B" data-slug="slack" data-light="4A154B" data-dark="36C5F0" alt="">
+                        </span>
+                        <span class="tech-name">Slack</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="F">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/figma" data-slug="figma" alt="">
+                        </span>
+                        <span class="tech-name">Figma</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="C">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/canva" data-slug="canva" alt="">
+                        </span>
+                        <span class="tech-name">Canva</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="E">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/espressif" data-slug="espressif" alt="">
+                        </span>
+                        <span class="tech-name">ESP32</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="R">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/roboflow" data-slug="roboflow" alt="">
+                        </span>
+                        <span class="tech-name">Roboflow</span>
+                    </span>
+                    <!-- duplicate set below: required for the seamless loop -->
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="S">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/selenium" data-slug="selenium" alt="">
+                        </span>
+                        <span class="tech-name">Selenium</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="G">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/git" data-slug="git" alt="">
+                        </span>
+                        <span class="tech-name">Git</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="T">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/trello" data-slug="trello" alt="">
+                        </span>
+                        <span class="tech-name">Trello</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="N">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/notion/191919" data-slug="notion" data-light="191919" data-dark="FFFFFF" alt="">
+                        </span>
+                        <span class="tech-name">Notion</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="A">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/asana" data-slug="asana" alt="">
+                        </span>
+                        <span class="tech-name">Asana</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="M">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/mondaydotcom" data-slug="mondaydotcom" alt="">
+                        </span>
+                        <span class="tech-name">Monday.com</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="S">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/slack/4A154B" data-slug="slack" data-light="4A154B" data-dark="36C5F0" alt="">
+                        </span>
+                        <span class="tech-name">Slack</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="F">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/figma" data-slug="figma" alt="">
+                        </span>
+                        <span class="tech-name">Figma</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="C">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/canva" data-slug="canva" alt="">
+                        </span>
+                        <span class="tech-name">Canva</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="E">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/espressif" data-slug="espressif" alt="">
+                        </span>
+                        <span class="tech-name">ESP32</span>
+                    </span>
+                    <span class="tech-pill">
+                        <span class="tech-icon" data-letter="R">
+                            <img class="tech-logo" src="https://cdn.simpleicons.org/roboflow" data-slug="roboflow" alt="">
+                        </span>
+                        <span class="tech-name">Roboflow</span>
+                    </span>
                 </div>
+            </div>
 
-                <div class="skill-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3>UI/UX &amp; Design</h3>
-                    <p>Figma, Canva</p>
+            <div class="skills-extra">
+                <h3>Also skilled in</h3>
+                <div class="skills-extra-tags">
+                    <span class="tag">Market Validation</span>
+                    <span class="tag">MVP Development</span>
+                    <span class="tag">Data Analysis</span>
+                    <span class="tag">Process Optimization</span>
+                    <span class="tag">Reporting</span>
+                    <span class="tag">IoT System Design</span>
+                    <span class="tag">Sensor Integration</span>
+                    <span class="tag">Hardware Maintenance</span>
+                    <span class="tag">IP Rights</span>
+                    <span class="tag">Commercialization Strategy</span>
+                    <span class="tag">Stakeholder Management</span>
+                    <span class="tag">Pitching</span>
                 </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">📊</div>
-                    <h3>Data &amp; Automation</h3>
-                    <p>Process Optimization, Automation, Data Analysis, Reporting, Roboflow</p>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">🔌</div>
-                    <h3>IoT &amp; Hardware</h3>
-                    <p>ESP32, IoT System Design, Hardware Component Maintenance &amp; Cleaning, Sensor Integration</p>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">🚀</div>
-                    <h3>Startup &amp; Business</h3>
-                    <p>Market Validation, MVP Development, IP Rights, Commercialization Strategy, Stakeholder
-                        Management, Pitching</p>
-                </div>
-
             </div>
         </div>
     </section>
@@ -412,13 +720,14 @@
                             <img src="assets/Aida/Aida_8.jpg" alt="AIDA 8" class="slide">
                             <img src="assets/Aida/Aida_9.jpg" alt="AIDA 9" class="slide">
                             <img src="assets/Aida/Aida_10.jpg" alt="AIDA 10" class="slide">
+                            <img src="assets/Aida/Aida_11.jpg" alt="AIDA 11" class="slide">
+                            <img src="assets/Aida/Aida_12.jpg" alt="AIDA 12" class="slide">
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>Automated Incident Detection and Assistance (AIDA)</h3>
                         <p>Award-winning web and mobile system with real-time location detection, AI-powered incident
-                            recognition, automated reporting, and IoT integration. Deployed with El Salvador City
-                            CDRRMO.</p>
+                            recognition, automated reporting, and IoT integration.</p>
                         <div class="project-tags">
                             <span class="tag">React Native</span>
                             <span class="tag">Python</span>
@@ -437,6 +746,10 @@
                             <img src="assets/Lawod/Lawod_3.jpg" alt="Lawod 3" class="slide">
                             <img src="assets/Lawod/Lawod_4.jpg" alt="Lawod 4" class="slide">
                             <img src="assets/Lawod/Lawod_5.jpg" alt="Lawod 5" class="slide">
+                            <img src="assets/Lawod/Lawod_6.jpg" alt="Lawod 6" class="slide">
+                            <img src="assets/Lawod/Lawod_7.jpg" alt="Lawod 7" class="slide">
+                            <img src="assets/Lawod/Lawod_8.jpg" alt="Lawod 8" class="slide">
+                            <img src="assets/Lawod/Lawod_9.jpg" alt="Lawod 9" class="slide">
                         </div>
                     </div>
                     <div class="project-info">
@@ -456,14 +769,14 @@
                 <div class="project-card">
                     <div class="project-image">
                         <div class="project-slideshow">
-                            <img src="assets/Coffeenoy/coffeenoy_1.jpg" alt="Kofeenoy 1" class="slide active">
-                            <img src="assets/Coffeenoy/coffeenoy_2.jpg" alt="Kofeenoy 2" class="slide">
-                            <img src="assets/Coffeenoy/coffeenoy_3.jpg" alt="Kofeenoy 3" class="slide">
-                            <img src="assets/Coffeenoy/coffeenoy_4.jpg" alt="Kofeenoy 4" class="slide">
+                            <img src="assets/Coffeenoy/coffeenoy_1.jpg" alt="Coffeenoy 1" class="slide active">
+                            <img src="assets/Coffeenoy/coffeenoy_2.jpg" alt="Coffeenoy 2" class="slide">
+                            <img src="assets/Coffeenoy/coffeenoy_3.jpg" alt="Coffeenoy 3" class="slide">
+                            <img src="assets/Coffeenoy/coffeenoy_4.jpg" alt="Coffeenoy 4" class="slide">
                         </div>
                     </div>
                     <div class="project-info">
-                        <h3>Kofeenoy</h3>
+                        <h3>Coffeenoy</h3>
                         <p>A responsive web-based Coffee Recipe book with a clean UI and dynamic recipe browsing
                             experience.</p>
                         <div class="project-tags">
@@ -520,6 +833,7 @@
                     Resume
                 </a>
             </div>
+        </div>
     </section>
 
     <!-- FOOTER -->

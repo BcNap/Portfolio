@@ -20,7 +20,27 @@ var themeToggle = document.getElementById('themeToggle');
 function applyTheme(dark) {
     document.body.classList.toggle('dark-mode', dark);
     localStorage.setItem('theme', dark ? 'dark' : 'light');
+    recolorTechLogos(dark);
 }
+
+// A few brand colours are unreadable against one of the two backgrounds
+// (Notion black, Django's dark green, JS yellow). Those pills carry
+// data-light / data-dark overrides; everything else keeps its official
+// brand colour, which the CDN serves by default.
+function recolorTechLogos(dark) {
+    document.querySelectorAll('.tech-logo').forEach(function (img) {
+        var slug  = img.getAttribute('data-slug');
+        var color = img.getAttribute(dark ? 'data-dark' : 'data-light');
+        if (!slug) return;
+        var next = 'https://cdn.simpleicons.org/' + slug + (color ? '/' + color : '');
+        if (img.getAttribute('src') !== next) img.setAttribute('src', next);
+    });
+}
+
+// If a logo 404s, drop the image so the lettermark underneath shows instead
+document.querySelectorAll('.tech-logo').forEach(function (img) {
+    img.addEventListener('error', function () { img.remove(); });
+});
 
 var savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
@@ -129,8 +149,9 @@ var fadeObserver = new IntersectionObserver(function (entries) {
 }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll(
-    '.skill-card, .project-card, .about-text, .contact-card, ' +
-    '.experience-card, .education-card, .competition-card'
+    '.project-card, .about-text, .contact-card, ' +
+    '.experience-card, .education-card, .competition-card, ' +
+    '.skills-intro, .skills-extra'
 ).forEach(function (el) {
     el.classList.add('fade-in');
     fadeObserver.observe(el);
@@ -178,9 +199,12 @@ window.addEventListener('load', function () {
 // ============================================
 // MOBILE PERFORMANCE OPTIMIZATION
 // ============================================
+// Note: the marquee tracks are excluded so the carousel keeps its
+// long loop duration instead of being forced down to 0.5s.
 if (window.innerWidth <= 768) {
     var perfStyle = document.createElement('style');
-    perfStyle.textContent = '* { transition-duration: 0.2s !important; animation-duration: 0.5s !important; }';
+    perfStyle.textContent =
+        '*:not(.tech-track) { transition-duration: 0.2s !important; animation-duration: 0.5s !important; }';
     document.head.appendChild(perfStyle);
 }
 
@@ -255,3 +279,122 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 3000);
     });
 });
+
+// ============================================
+// AI CHAT WIDGET
+// ============================================
+(function () {
+    var fab       = document.getElementById('chatFab');
+    var panel     = document.getElementById('chatPanel');
+    var messages  = document.getElementById('chatMessages');
+    var form      = document.getElementById('chatForm');
+    var input     = document.getElementById('chatInput');
+    var sendBtn   = form ? form.querySelector('.chat-send') : null;
+    var suggBox   = document.getElementById('chatSuggestions');
+
+    if (!fab || !panel || !form || !input) return;
+
+    var history = []; // { role: 'user' | 'assistant', content: string }
+    var isOpen  = false;
+    var isSending = false;
+
+    function toggle(open) {
+        isOpen = open !== undefined ? open : !isOpen;
+        fab.classList.toggle('active', isOpen);
+        panel.classList.toggle('active', isOpen);
+        fab.setAttribute('aria-expanded', String(isOpen));
+        panel.setAttribute('aria-hidden', String(!isOpen));
+        if (isOpen) setTimeout(function () { input.focus(); }, 250);
+    }
+
+    fab.addEventListener('click', function () { toggle(); });
+
+    document.addEventListener('click', function (e) {
+        if (isOpen && !e.target.closest('.chat-panel') && !e.target.closest('.chat-fab')) {
+            toggle(false);
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && isOpen) toggle(false);
+    });
+
+    function appendMessage(role, text) {
+        var el = document.createElement('div');
+        el.className = 'chat-msg chat-msg--' + role;
+        el.innerHTML = text; // fixed strings / escaped user text only, see below
+        messages.appendChild(el);
+        messages.scrollTop = messages.scrollHeight;
+        return el;
+    }
+
+    function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    function showTyping() {
+        var el = document.createElement('div');
+        el.className = 'chat-typing';
+        el.id = 'chatTypingIndicator';
+        el.innerHTML = '<span></span><span></span><span></span>';
+        messages.appendChild(el);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function hideTyping() {
+        var el = document.getElementById('chatTypingIndicator');
+        if (el) el.remove();
+    }
+
+    async function sendMessage(text) {
+        text = text.trim();
+        if (!text || isSending) return;
+
+        if (suggBox) suggBox.classList.add('hidden');
+
+        appendMessage('user', escapeHtml(text));
+        history.push({ role: 'user', content: text });
+        input.value = '';
+        isSending = true;
+        sendBtn.disabled = true;
+        showTyping();
+
+        try {
+            var res = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: history }),
+            });
+
+            var data = await res.json();
+            hideTyping();
+
+            if (!res.ok || !data.reply) {
+                appendMessage('error', 'Something went wrong. Please try again, or email Nap Carlo directly.');
+                return;
+            }
+
+            appendMessage('bot', escapeHtml(data.reply));
+            history.push({ role: 'assistant', content: data.reply });
+        } catch (err) {
+            hideTyping();
+            appendMessage('error', "Couldn't reach the server. Check your connection and try again.");
+        } finally {
+            isSending = false;
+            sendBtn.disabled = false;
+        }
+    }
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        sendMessage(input.value);
+    });
+
+    if (suggBox) {
+        suggBox.querySelectorAll('.chat-suggestion').forEach(function (btn) {
+            btn.addEventListener('click', function () { sendMessage(btn.textContent); });
+        });
+    }
+})();

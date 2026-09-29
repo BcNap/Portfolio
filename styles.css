@@ -23,6 +23,7 @@
     --border:       #e5e7eb;
     --tag-bg:       #eff6ff;
     --tag-color:    #1d4ed8;
+    --logo-tile:    #f1f4f9;
 
     --shadow-card:  0 2px 16px rgba(0, 0, 0, 0.07);
     --shadow-hover: 0 16px 48px rgba(0, 102, 255, 0.18);
@@ -42,6 +43,7 @@ body.dark-mode {
     --border:       #1e2535;
     --tag-bg:       rgba(0, 102, 255, 0.14);
     --tag-color:    #6699ff;
+    --logo-tile:    #10141f;
 
     --shadow-card:  0 2px 16px rgba(0, 0, 0, 0.35);
     --shadow-hover: 0 16px 48px rgba(0, 102, 255, 0.22);
@@ -63,6 +65,19 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 40px;
+}
+
+/* Screen-reader only utility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* ============================================
@@ -725,7 +740,7 @@ body.dark-mode .competition-level--silver { color: #94a3b8; }
 .competition-content p  { font-size: 0.83rem; color: var(--text-2); line-height: 1.65; }
 
 /* ============================================
-   SKILLS
+   SKILLS — INFINITE TECH CAROUSEL
    ============================================ */
 .skills { padding: 100px 40px; background: transparent; }
 
@@ -737,39 +752,133 @@ body.dark-mode .competition-level--silver { color: #94a3b8; }
     transition: background 0.4s ease, border-color 0.4s ease;
 }
 
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+.skills-intro {
+    color: var(--text-2);
+    font-size: 1rem;
+    max-width: 520px;
+    margin-top: -1.6rem;
+    margin-bottom: 2.6rem;
 }
 
-.skill-card {
-    padding: 2.2rem;
-    background: var(--bg-card);
-    border-radius: 20px;
-    border: 1px solid var(--border);
+.tech-marquee {
     position: relative;
+    width: 100%;
     overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 0.55rem 0;
+    /* Soft fade at both edges so pills don't get clipped hard */
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 
-.skill-card::before {
-    content: '';
+.tech-marquee + .tech-marquee { margin-top: 0.6rem; }
+
+.tech-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: marqueeLeft 38s linear infinite;
+}
+
+.tech-track--reverse {
+    animation-name: marqueeRight;
+    animation-duration: 34s;
+}
+
+.tech-marquee:hover .tech-track { animation-play-state: paused; }
+
+@keyframes marqueeLeft {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+}
+
+.tech-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.75rem 1.35rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    white-space: nowrap;
+    box-shadow: var(--shadow-card);
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tech-pill:hover {
+    transform: translateY(-5px) scale(1.04);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-hover);
+}
+
+.tech-icon {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--logo-tile);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    flex-shrink: 0;
+    transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+/* Lettermark shown underneath — visible only if the logo fails to load */
+.tech-icon::before {
+    content: attr(data-letter);
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent), #00ccff);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.35s ease;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-2);
+    line-height: 1;
 }
 
-.skill-card:hover::before { transform: scaleX(1); }
-.skill-card:hover { border-color: var(--accent); transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+.tech-logo {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 21px;
+    height: 21px;
+    object-fit: contain;
+    background: var(--logo-tile);
+    padding: 8px;
+    box-sizing: content-box;
+    border-radius: 9px;
+    transition: background 0.4s ease;
+}
 
-.skill-icon { font-size: 2.8rem; margin-bottom: 1rem; display: block; }
-.skill-card h3 { font-size: 1.05rem; margin-bottom: 0.6rem; font-weight: 700; color: var(--text-1); }
-.skill-card p  { color: var(--text-2); line-height: 1.65; font-size: 0.9rem; }
+.tech-name {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--text-1);
+    letter-spacing: -0.2px;
+}
+
+.skills-extra {
+    margin-top: 2.8rem;
+    padding-top: 2.2rem;
+    border-top: 1px solid var(--border);
+}
+
+.skills-extra h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-2);
+    margin-bottom: 1rem;
+}
+
+.skills-extra-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
 
 /* ============================================
    PROJECTS
@@ -966,9 +1075,7 @@ body.dark-mode .contact { background: #070810; }
     box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
 }
 
-.social-link svg {
-    flex-shrink: 0;
-}
+.social-link svg { flex-shrink: 0; }
 
 /* ============================================
    FOOTER
@@ -1005,12 +1112,23 @@ body.dark-mode .footer {
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
 /* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .tech-track { animation: none; }
+    .tech-marquee {
+        overflow-x: auto;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+}
+
+/* ============================================
    RESPONSIVE — 1024px
    ============================================ */
 @media (max-width: 1024px) {
     .about-content     { grid-template-columns: 1fr; gap: 2.5rem; }
     .avatar-container  { order: -1; }
-    .skills-grid       { grid-template-columns: repeat(2, 1fr); }
     .experience-grid   { grid-template-columns: 1fr; }
     .education-grid    { grid-template-columns: 1fr; }
     .competitions-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1070,6 +1188,17 @@ body.dark-mode .footer {
     .skills .container,
     .experience .container { padding: 36px 22px; border-radius: 20px; }
 
+    .skills-intro { margin-top: -1.2rem; margin-bottom: 2rem; font-size: 0.94rem; }
+
+    .tech-track          { animation-duration: 26s; gap: 0.7rem; }
+    .tech-track--reverse { animation-duration: 22s; }
+    .tech-pill  { padding: 0.6rem 1.05rem; gap: 0.5rem; border-radius: 14px; }
+    .tech-icon  { width: 32px; height: 32px; border-radius: 9px; }
+    .tech-logo  { width: 18px; height: 18px; padding: 7px; border-radius: 8px; }
+    .tech-name  { font-size: 0.85rem; }
+
+    .skills-extra { margin-top: 2.2rem; padding-top: 1.8rem; }
+
     .hero { padding: 100px 16px 60px; }
 
     .back-to-top { bottom: 18px; right: 18px; width: 44px; height: 44px; }
@@ -1084,5 +1213,212 @@ body.dark-mode .footer {
     .social-link   { width: 100%; text-align: center; justify-content: center; }
     .competitions-grid { grid-template-columns: 1fr; }
     .projects-grid     { grid-template-columns: 1fr; }
-    .skills-grid       { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   AI CHAT WIDGET
+   ============================================ */
+.chat-fab {
+    position: fixed;
+    bottom: 32px;
+    left: 32px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 26px rgba(0, 102, 255, 0.4);
+    z-index: 999;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.chat-fab:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 12px 34px rgba(0, 102, 255, 0.55); }
+
+.chat-fab-icon-open, .chat-fab-icon-close {
+    position: absolute;
+    transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chat-fab-icon-close { opacity: 0; transform: scale(0.5) rotate(-45deg); }
+
+.chat-fab.active .chat-fab-icon-open { opacity: 0; transform: scale(0.5) rotate(45deg); }
+.chat-fab.active .chat-fab-icon-close { opacity: 1; transform: scale(1) rotate(0deg); }
+
+.chat-panel {
+    position: fixed;
+    bottom: 100px;
+    left: 32px;
+    width: 360px;
+    max-width: calc(100vw - 32px);
+    height: 480px;
+    max-height: calc(100vh - 140px);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow-hover), 0 0 0 1px var(--border);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+    pointer-events: none;
+    transform-origin: bottom left;
+    transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chat-panel.active { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+
+.chat-header {
+    padding: 1.1rem 1.3rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-raised);
+    flex-shrink: 0;
+}
+
+.chat-header-info { display: flex; align-items: center; gap: 0.7rem; }
+
+.chat-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #00ccff);
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.8rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+
+.chat-title { font-weight: 700; font-size: 0.92rem; color: var(--text-1); }
+.chat-subtitle { font-size: 0.75rem; color: var(--text-3); margin-top: 1px; }
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.1rem 1.1rem 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.chat-msg {
+    max-width: 86%;
+    padding: 0.65rem 0.9rem;
+    border-radius: 16px;
+    font-size: 0.86rem;
+    line-height: 1.55;
+}
+
+.chat-msg--bot {
+    align-self: flex-start;
+    background: var(--bg-raised);
+    color: var(--text-1);
+    border-bottom-left-radius: 4px;
+}
+
+.chat-msg--user {
+    align-self: flex-end;
+    background: var(--accent);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-msg--error {
+    align-self: flex-start;
+    background: rgba(220, 38, 38, 0.08);
+    color: #dc2626;
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-bottom-left-radius: 4px;
+}
+
+.chat-typing { align-self: flex-start; display: flex; gap: 4px; padding: 0.75rem 0.9rem; }
+.chat-typing span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--text-3);
+    animation: chatTypingBounce 1.2s infinite ease-in-out;
+}
+.chat-typing span:nth-child(2) { animation-delay: 0.15s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes chatTypingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-4px); opacity: 1; }
+}
+
+.chat-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0.6rem 1.1rem;
+    flex-shrink: 0;
+}
+
+.chat-suggestion {
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    background: var(--tag-bg);
+    color: var(--tag-color);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.chat-suggestion:hover { border-color: var(--accent); transform: translateY(-1px); }
+.chat-suggestion.hidden { display: none; }
+
+.chat-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1rem;
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.chat-input {
+    flex: 1;
+    border: 1px solid var(--border);
+    background: var(--bg-raised);
+    color: var(--text-1);
+    border-radius: 20px;
+    padding: 0.6rem 1rem;
+    font-size: 0.86rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.chat-input:focus { border-color: var(--accent); }
+
+.chat-send {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.chat-send:hover { transform: scale(1.08); }
+.chat-send:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+@media (max-width: 480px) {
+    .chat-fab { bottom: 18px; left: 18px; width: 50px; height: 50px; }
+    .chat-panel {
+        bottom: 0; left: 0; right: 0;
+        width: 100%; max-width: 100%;
+        height: 78vh; max-height: 78vh;
+        border-radius: 22px 22px 0 0;
+        transform-origin: bottom center;
+    }
 }
